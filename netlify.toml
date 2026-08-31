@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/releases/*"
+  [headers.values]
+    Content-Disposition = "attachment"
+    Content-Type = "application/vnd.android.package-archive"
+    X-Content-Type-Options = "nosniff"
