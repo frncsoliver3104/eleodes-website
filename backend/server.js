@@ -13,16 +13,47 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 const PORT = process.env.PORT || 5000
+const APK_PATH = path.resolve(__dirname, '../public/releases/app-release.apk')
+
+const configuredOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean)
+  .map((origin) => {
+    try {
+      return new URL(origin).origin
+    } catch {
+      throw new Error(`Invalid FRONTEND_URL origin: ${origin}`)
+    }
+  })
+
+// Only enable this behind a known reverse proxy. The default keeps request IPs
+// from being supplied by untrusted X-Forwarded-For headers.
+if (process.env.TRUST_PROXY === '1') {
+  app.set('trust proxy', 1)
+}
 
 // Security Middleware
-app.use(helmet())
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'same-site' },
+}))
 
 // CORS - Allow only frontend domain
+app.use((req, res, next) => {
+  const origin = req.get('Origin')
+  // Direct APK navigations and command-line downloads do not send Origin.
+  // For browser API requests, reject origins outside the explicit allowlist.
+  if (origin && !configuredOrigins.includes(origin)) {
+    return res.status(403).json({ error: 'Origin is not allowed' })
+  }
+  return next()
+})
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true,
+  origin: configuredOrigins,
+  credentials: false,
   methods: ['GET'],
-  allowedHeaders: ['Content-Type']
+  maxAge: 86400,
 }
 app.use(cors(corsOptions))
 
@@ -36,7 +67,7 @@ const downloadLimiter = rateLimit({
 })
 
 // Body Parser
-app.use(express.json())
+app.use(express.json({ limit: '10kb' }))
 
 // Health Check
 app.get('/health', (req, res) => {
@@ -46,9 +77,13 @@ app.get('/health', (req, res) => {
 // Download APK Endpoint
 app.get('/api/download', downloadLimiter, (req, res) => {
   try {
-    const filePath = path.join(__dirname, '../public/releases/app-release.apk')
-    
-    res.download(filePath, 'app-release.apk', (err) => {
+    res.download(APK_PATH, 'app-release.apk', {
+      headers: {
+        'Content-Type': 'application/vnd.android.package-archive',
+        'X-Content-Type-Options': 'nosniff',
+        'Cache-Control': 'no-store',
+      },
+    }, (err) => {
       if (err) {
         console.error('Download error:', err)
         if (!res.headersSent) {
@@ -75,8 +110,8 @@ app.get('/api/apk-info', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).json({ error: 'Something went wrong!' })
+  console.error(err.stack || err.message)
+  return res.status(500).json({ error: 'Something went wrong!' })
 })
 
 // 404 handler
