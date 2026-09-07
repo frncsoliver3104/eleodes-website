@@ -36,7 +36,7 @@ const Creators = () => {
             Behind Eleodes is a team of passionate Bachelor of Science in Information Technology (BSIT) students from the Western Institute of Technology dedicated to developing innovative and sustainable solutions for real-world challenges.
           </p>
           <p className="mt-4 text-lg leading-8 text-slate-700">
-            Through the integration of Atmospheric Water Generation and Internet of Things (IoT) technology, our team aims to improve access to clean drinking water while promoting smart and sustainable water management.
+            Through the integration of Atmospheric Water Generation and Internet of Things (IoT) technology, our team aims to improve access to clean, potable drinking water.
           </p>
         </div>
 
