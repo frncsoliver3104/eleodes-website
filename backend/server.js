@@ -15,6 +15,9 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const APK_PATH = path.resolve(__dirname, '../public/releases/app-release.apk')
 
+// Avoid disclosing that this service is powered by Express.
+app.disable('x-powered-by')
+
 const configuredOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim())
@@ -65,9 +68,6 @@ const downloadLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 })
-
-// Body Parser
-app.use(express.json({ limit: '10kb' }))
 
 // Health Check
 app.get('/health', (req, res) => {
