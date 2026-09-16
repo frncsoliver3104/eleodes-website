@@ -1,4 +1,5 @@
 import { downloadFilename, downloadUrl } from '../config/download'
+import downloadQrCode from '../assets/eleodes-download-qr.png'
 
 const Download = () => {
   return (
@@ -18,14 +19,13 @@ const Download = () => {
           </div>
 
           <div className="grid items-center gap-6 md:grid-cols-[220px_1fr]">
-            <div className="flex items-center justify-center rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex h-40 w-40 items-center justify-center rounded-[2rem] bg-[#f5fffb]">
-                <svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#00c896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 3v12" />
-                  <path d="m7 10 5 5 5-5" />
-                  <path d="M5 20h14" />
-                </svg>
-              </div>
+            <div className="flex flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-5 text-center shadow-sm">
+              <img
+                src={downloadQrCode}
+                alt="QR code to download the Eleodes Android app"
+                className="h-40 w-40 rounded-xl object-contain"
+              />
+              <p className="mt-3 text-xs font-medium text-slate-600">Scan to download</p>
             </div>
             <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="space-y-5">
