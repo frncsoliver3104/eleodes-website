@@ -18,7 +18,7 @@ const Logo = ({ size = 'md', dark = false, black = false }) => {
       <img
         src={logoImage}
         alt="o"
-        className="relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] translate-y-[0.08em] object-contain"
+        className="relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] translate-y-[0.04em] object-contain md:translate-y-[0.08em]"
       />
       <span>des</span>
     </div>
