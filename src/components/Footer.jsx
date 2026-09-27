@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <footer className="bg-eleodes-teal text-gray-900 py-16">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Logo & Social */}
-          <div className="md:col-span-1">
+          <div>
             <div className="mb-6 flex items-center">
               <Logo size="sm" black />
             </div>
@@ -42,6 +42,43 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Project FAQ */}
+          <div>
+            <h4 className="mb-4 font-semibold">FAQ</h4>
+            <div className="divide-y divide-gray-900/20 text-sm">
+              <details className="group py-3 first:pt-0">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
+                  What is Eleodes?
+                  <span className="text-lg leading-none" aria-hidden="true">
+                    <span className="group-open:hidden">+</span>
+                    <span className="hidden group-open:inline">−</span>
+                  </span>
+                </summary>
+                <p className="mt-2 leading-6 text-gray-900/75">A smart system that generates water from air.</p>
+              </details>
+              <details className="group py-3">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
+                  What does the app monitor?
+                  <span className="text-lg leading-none" aria-hidden="true">
+                    <span className="group-open:hidden">+</span>
+                    <span className="hidden group-open:inline">−</span>
+                  </span>
+                </summary>
+                <p className="mt-2 leading-6 text-gray-900/75">Temperature, humidity, water level, and pH.</p>
+              </details>
+              <details className="group py-3 last:pb-0">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
+                  Where can I get the app?
+                  <span className="text-lg leading-none" aria-hidden="true">
+                    <span className="group-open:hidden">+</span>
+                    <span className="hidden group-open:inline">−</span>
+                  </span>
+                </summary>
+                <p className="mt-2 leading-6 text-gray-900/75">Download the Android APK from our Download section.</p>
+              </details>
+            </div>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="mb-4 font-semibold">Contact Us</h4>
@@ -64,7 +101,7 @@ const Footer = () => {
 
         </div>
 
-                <div className="border-t border-gray-900/20 pt-6 text-center text-sm">
+        <div className="border-t border-gray-900/20 pt-6 text-center text-sm">
           ©<span className="font-bold">eleodes</span> 2026 All rights reserved.
         </div>
       </div>
