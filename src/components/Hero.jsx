@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.14),_transparent_48%)]" />
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
         <div className="max-w-2xl text-left">
-          <Logo size="sm" />
+          <Logo size="sm" aligned />
           <p className="mb-6 mt-4 text-2xl font-light italic tracking-tight text-slate-950 md:text-[2.1rem]">
             "Every Drop Matters"
           </p>

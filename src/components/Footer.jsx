@@ -2,20 +2,20 @@ import Logo from './Logo'
 
 const Footer = () => {
   return (
-    <footer className="bg-eleodes-teal text-gray-900 py-16">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-3">
+    <footer className="bg-eleodes-teal text-gray-900 py-20">
+      <div className="mx-auto max-w-[1428px] px-6">
+        <div className="mb-16 grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-12">
           {/* Logo & Social */}
           <div>
             <div className="mb-6 flex items-center">
               <Logo size="sm" black />
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <a
                 href="https://www.facebook.com/share/1BiuzxtiuM/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-[10px] border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
                 aria-label="Facebook"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -24,14 +24,14 @@ const Footer = () => {
               </a>
               <a
                 href="mailto:eleodes@myyahoo.com"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-[10px] border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
                 aria-label="Yahoo"
               >
                 <span className="text-base font-bold leading-none" aria-hidden="true">Y!</span>
               </a>
               <a
                 href="mailto:eleodes472@gmail.com"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-[10px] border border-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
                 aria-label="Email eleodes472@gmail.com"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -39,43 +39,6 @@ const Footer = () => {
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
               </a>
-            </div>
-          </div>
-
-          {/* Project FAQ */}
-          <div>
-            <h4 className="mb-4 font-semibold">FAQ</h4>
-            <div className="divide-y divide-gray-900/20 text-sm">
-              <details className="group py-3 first:pt-0">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
-                  What is Eleodes?
-                  <span className="text-lg leading-none" aria-hidden="true">
-                    <span className="group-open:hidden">+</span>
-                    <span className="hidden group-open:inline">−</span>
-                  </span>
-                </summary>
-                <p className="mt-2 leading-6 text-gray-900/75">A smart system that generates water from air.</p>
-              </details>
-              <details className="group py-3">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
-                  What does the app monitor?
-                  <span className="text-lg leading-none" aria-hidden="true">
-                    <span className="group-open:hidden">+</span>
-                    <span className="hidden group-open:inline">−</span>
-                  </span>
-                </summary>
-                <p className="mt-2 leading-6 text-gray-900/75">Temperature, humidity, water level, and pH.</p>
-              </details>
-              <details className="group py-3 last:pb-0">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-medium">
-                  Where can I get the app?
-                  <span className="text-lg leading-none" aria-hidden="true">
-                    <span className="group-open:hidden">+</span>
-                    <span className="hidden group-open:inline">−</span>
-                  </span>
-                </summary>
-                <p className="mt-2 leading-6 text-gray-900/75">Download the Android APK from our Download section.</p>
-              </details>
             </div>
           </div>
 
@@ -96,6 +59,50 @@ const Footer = () => {
                 </svg>
                 Iloilo City, Philippines
               </li>
+            </ul>
+          </div>
+
+          {/* Explore links */}
+          <div>
+            <h4 className="mb-4 font-semibold">Explore</h4>
+            <ul className="space-y-3 text-sm">
+              <li id="faq">
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+                    FAQ&apos;s
+                    <span className="text-base leading-none" aria-hidden="true">
+                      <span className="group-open:hidden">+</span>
+                      <span className="hidden group-open:inline">−</span>
+                    </span>
+                  </summary>
+                  <div className="mt-3 space-y-3 border-l border-gray-900/20 pl-3 text-gray-900/80">
+                    <details>
+                      <summary className="cursor-pointer">What is Eleodes?</summary>
+                      <p className="mt-1">A smart system that generates water from air.</p>
+                    </details>
+                    <details>
+                      <summary className="cursor-pointer">What does the app monitor?</summary>
+                      <p className="mt-1">Temperature, humidity, water level, and pH.</p>
+                    </details>
+                    <details>
+                      <summary className="cursor-pointer">Where can I get the app?</summary>
+                      <p className="mt-1">Download the Android APK from our Download section.</p>
+                    </details>
+                  </div>
+                </details>
+              </li>
+              <li><a href="#terms" className="hover:underline">Terms and Services</a></li>
+              <li><a href="#about" className="hover:underline">Privacy and Policy</a></li>
+            </ul>
+          </div>
+
+          {/* More links */}
+          <div>
+            <h4 className="mb-4 font-semibold">More</h4>
+            <ul className="space-y-3 text-sm">
+              <li><a href="#download" className="hover:underline">User Manual</a></li>
+              <li><a href="mailto:eleodes@gmail.com?subject=Report%20a%20Bug" className="hover:underline">Report a Bug</a></li>
+              <li><a href="mailto:eleodes@gmail.com?subject=Help%20Center" className="hover:underline">Help Center</a></li>
             </ul>
           </div>
 

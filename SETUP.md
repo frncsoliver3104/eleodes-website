@@ -12,7 +12,7 @@ This Vite + React site is ready for static deployment. The APK is stored at `pub
    npm run build
    ```
 
-3. Upload the generated `dist` folder to any static host. Netlify and Vercel detect the included configuration automatically:
+3. Import the repository into Vercel. The included `vercel.json` configures the deployment headers, and Vercel builds the site with:
 
    - Build command: `npm run build`
    - Publish directory: `dist`

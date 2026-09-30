@@ -23,7 +23,7 @@ const Creators = () => {
   ]
 
   return (
-    <section id="creators" className="bg-white px-6 py-20 md:px-8 lg:px-12">
+    <section id="creators" className="bg-slate-50 px-6 py-20 md:px-8 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-3xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-[#00c896]">
