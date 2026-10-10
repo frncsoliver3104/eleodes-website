@@ -101,8 +101,24 @@ const Footer = () => {
             <h4 className="mb-4 font-semibold">More</h4>
             <ul className="space-y-3 text-sm">
               <li><a href="#download" className="hover:underline">User Manual</a></li>
-              <li><a href="mailto:eleodes@gmail.com?subject=Report%20a%20Bug" className="hover:underline">Report a Bug</a></li>
-              <li><a href="mailto:eleodes@gmail.com?subject=Help%20Center" className="hover:underline">Help Center</a></li>
+              <li>
+                <details className="group">
+                  <summary className="cursor-pointer list-none hover:underline">Report a Bug</summary>
+                  <ul className="mt-2 space-y-2 border-l border-gray-900/20 pl-3 text-gray-900/80">
+                    <li><a className="hover:underline" href="mailto:eleodes472@gmail.com?subject=Report%20a%20Bug">Email (Gmail)</a></li>
+                    <li><a className="hover:underline" href="mailto:eleodes@myyahoo.com?subject=Report%20a%20Bug">Yahoo Mail</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details className="group">
+                  <summary className="cursor-pointer list-none hover:underline">Help Center</summary>
+                  <ul className="mt-2 space-y-2 border-l border-gray-900/20 pl-3 text-gray-900/80">
+                    <li><a className="hover:underline" href="mailto:eleodes472@gmail.com?subject=Help%20Center">Email (Gmail)</a></li>
+                    <li><a className="hover:underline" href="mailto:eleodes@myyahoo.com?subject=Help%20Center">Yahoo Mail</a></li>
+                  </ul>
+                </details>
+              </li>
             </ul>
           </div>
 
