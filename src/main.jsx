@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import favicon from './assets/blueeleodeslogo.png'
+import favicon from './assets/green-eleodes-mark.png'
 import './index.css'
 
 // Keep document metadata close to the application entry point.

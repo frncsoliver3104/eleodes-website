@@ -1,5 +1,5 @@
 const Features = () => {
-  const features = [
+  const appFeatures = [
     {
       title: 'Live Monitoring',
       subtitle: 'Instant visibility',
@@ -49,7 +49,103 @@ const Features = () => {
         </svg>
       ),
     },
+    {
+      title: 'Production History',
+      subtitle: 'Daily and weekly view',
+      description: 'Compare production by day alongside weather conditions, with daily and weekly history.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <rect x="3" y="4" width="18" height="17" rx="2" />
+          <path d="M16 2v4M8 2v4M3 10h18" />
+          <path d="m8 15 2 2 5-5" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Production Rate',
+      subtitle: 'See current output',
+      description: 'View the device’s production rate in the app and follow its water output.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M3 19h18" />
+          <path d="M5 15l5-5 4 3 5-7" />
+          <path d="M15 6h4v4" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Water Dispensing',
+      subtitle: 'Track water release',
+      description: 'Keep track of water dispensed by the system and review usage over time.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M12 3c3 4 6 6 6 10a6 6 0 1 1-12 0c0-4 3-6 6-10z" />
+          <path d="M12 10v6M9.5 13.5 12 16l2.5-2.5" />
+        </svg>
+      ),
+    },
   ]
+
+  const deviceFeatures = [
+    {
+      title: 'Atmospheric Water Generation',
+      description: 'Collects moisture from the air and turns it into water.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M12 3c3 4 6 6 6 10a6 6 0 1 1-12 0c0-4 3-6 6-10z" />
+          <path d="M10 12c0 1.1.9 2 2 2s2-.9 2-2" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Water Level',
+      description: 'Check the system’s current water level from the connected app.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M5 5v14h14" />
+          <path d="M8 15c1.5-2 3-2 4.5 0s3 2 4.5 0" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Operating Conditions',
+      description: 'The device reports temperature and humidity readings for monitoring.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z" />
+          <path d="M12 11v7" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Water Quality Reading',
+      description: 'View the system’s pH reading alongside its other sensor values.',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-[#00c896]">
+          <path d="M4 19h16" />
+          <path d="M7 16l3-8 3 8" />
+          <path d="M8 13h4" />
+          <path d="M16 9v6" />
+          <path d="M14 12h4" />
+        </svg>
+      ),
+    },
+  ]
+
+  const renderFeatureGrid = (features) => (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {features.map((feature) => (
+        <article key={feature.title} className="h-full rounded-xl border border-slate-200 bg-slate-50 p-5 transition-shadow duration-200 hover:shadow-md">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[#e9fff4]">
+            {feature.icon}
+          </div>
+          <h4 className="mb-2 text-base font-semibold leading-snug text-gray-900">{feature.title}</h4>
+          {feature.subtitle && <p className="mb-2 text-xs font-semibold text-gray-800">{feature.subtitle}</p>}
+          <p className="text-sm leading-relaxed text-gray-600">{feature.description}</p>
+        </article>
+      ))}
+    </div>
+  )
 
   return (
     <section id="features" className="bg-white py-20 md:py-28">
@@ -62,30 +158,18 @@ const Features = () => {
             Cleaner water management with simple, smart tools.
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[320px_1fr]">
-          <div>
-            <h3 className="mb-4 text-xl font-semibold text-slate-900 leading-snug">
-              Built to make water generation easier to understand and manage.
-            </h3>
-            <p className="text-base leading-8 text-slate-600">
-              The Eleodes system collects moisture from the air, converts it into water, filters it, and gives users a simple way to monitor system performance from an Android device.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-shadow duration-200 hover:shadow-lg"
-              >
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#e9fff4]">
-                  {feature.icon}
-                </div>
-                <h4 className="mb-1 font-semibold text-gray-900">{feature.title}</h4>
-                <p className="mb-3 text-xs font-semibold text-gray-800">{feature.subtitle}</p>
-                <p className="text-sm leading-relaxed text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
+        <p className="mb-8 max-w-3xl text-base leading-8 text-slate-600">
+          Explore what you can do in the Eleodes app and the readings and water-generation capabilities of the AWG device.
+        </p>
+        <div className="space-y-12">
+          <section aria-labelledby="app-features-title">
+            <h3 id="app-features-title" className="mb-5 text-xl font-semibold text-slate-900">Eleodes app</h3>
+            {renderFeatureGrid(appFeatures)}
+          </section>
+          <section aria-labelledby="device-features-title">
+            <h3 id="device-features-title" className="mb-5 text-xl font-semibold text-slate-900">AWG device</h3>
+            {renderFeatureGrid(deviceFeatures)}
+          </section>
         </div>
       </div>
     </section>

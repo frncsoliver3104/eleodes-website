@@ -1,5 +1,4 @@
 import Logo from './Logo'
-import { downloadFilename, downloadUrl } from '../config/download'
 
 const Hero = () => {
   return (
@@ -15,8 +14,7 @@ const Hero = () => {
             Download the Eleodes APK directly from this site and install the mobile app to monitor your system remotely.
           </p>
           <a
-            href={downloadUrl}
-            download={downloadFilename}
+            href="#download"
             className="inline-flex items-center gap-2 rounded-full bg-[#00c896] px-8 py-3 text-slate-950 shadow-[0_14px_30px_rgba(0,200,150,0.18)] transition-all duration-200 hover:bg-[#00b386]"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

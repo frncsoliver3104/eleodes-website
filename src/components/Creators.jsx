@@ -30,7 +30,7 @@ const Creators = () => {
             Meet the Creators
           </p>
           <h2 className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-            Behind Eleodes is a passionate team of BSIT students.
+            Behind Eleodes is a passionate team of Demoralized.
           </h2>
           <p className="mt-4 text-lg leading-8 text-slate-700">
             Behind Eleodes is a team of passionate Bachelor of Science in Information Technology (BSIT) students from the Western Institute of Technology dedicated to developing innovative and sustainable solutions for real-world challenges.

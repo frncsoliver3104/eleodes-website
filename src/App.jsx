@@ -32,8 +32,8 @@ function App() {
       <main className="overflow-hidden">
         {hash === '#terms' ? <Terms /> : <>
         <Hero />
-        <Device />
         <Features />
+        <Device />
         <Download />
         <Creators />
         <About />

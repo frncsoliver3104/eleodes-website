@@ -1,4 +1,4 @@
-import blueImage from '../assets/blueeleodeslogo.png'
+import greenImage from '../assets/green-eleodes-mark.png'
 import blackImage from '../assets/blackeleodeslogo.png'
 
 const Logo = ({ size = 'md', dark = false, black = false, aligned = false }) => {
@@ -10,8 +10,7 @@ const Logo = ({ size = 'md', dark = false, black = false, aligned = false }) => 
 
   const { text } = sizes[size] || sizes.md
   const textColor = dark ? 'text-white' : 'text-slate-950'
-  const logoImage = black ? blackImage : blueImage
-  const imageAlignment = black || aligned ? 'translate-y-0' : 'translate-y-[0.04em] md:translate-y-[0.08em]'
+  const logoImage = black ? blackImage : greenImage
 
   return (
     <div className={`inline-flex items-center whitespace-nowrap ${textColor} ${text} font-normal tracking-[-0.05em] leading-none`}>
@@ -19,7 +18,7 @@ const Logo = ({ size = 'md', dark = false, black = false, aligned = false }) => 
       <img
         src={logoImage}
         alt="o"
-        className={`relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] ${imageAlignment} object-contain`}
+        className={`relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] ${black || aligned ? 'translate-y-0' : 'translate-y-[0.04em] md:translate-y-[0.08em]'} object-contain`}
       />
       <span>des</span>
     </div>
