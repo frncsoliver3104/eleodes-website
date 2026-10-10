@@ -20,7 +20,7 @@ const Navbar = () => {
           aria-label="Eleodes home"
           className="rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-eleodes-teal"
         >
-          <Logo size="sm" dark aligned />
+          <Logo size="sm" dark />
         </a>
         <div className="hidden md:flex items-center gap-6 text-[0.95rem] font-light tracking-wide">
           {navLinks.map((link) => (

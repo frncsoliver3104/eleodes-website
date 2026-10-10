@@ -1,7 +1,7 @@
 import greenImage from '../assets/green-eleodes-mark.png'
 import blackImage from '../assets/blackeleodeslogo.png'
 
-const Logo = ({ size = 'md', dark = false, black = false, aligned = false }) => {
+const Logo = ({ size = 'md', dark = false, black = false }) => {
   const sizes = {
     sm: { text: 'text-[2.8rem] md:text-[3.25rem]' },
     md: { text: 'text-[3.6rem] md:text-[4.2rem]' },
@@ -18,7 +18,7 @@ const Logo = ({ size = 'md', dark = false, black = false, aligned = false }) => 
       <img
         src={logoImage}
         alt="o"
-        className={`relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] ${black || aligned ? 'translate-y-0' : 'translate-y-[0.04em] md:translate-y-[0.08em]'} object-contain`}
+        className={`relative mx-[-0.1em] h-[0.88em] w-[0.88em] shrink-0 translate-x-[1.5px] ${black ? 'translate-y-0' : 'translate-y-[0.04em]'} object-contain`}
       />
       <span>des</span>
     </div>
