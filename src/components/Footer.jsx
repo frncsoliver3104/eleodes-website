@@ -77,12 +77,16 @@ const Footer = () => {
                   </summary>
                   <div className="mt-3 space-y-3 border-l border-gray-900/20 pl-3 text-gray-900/80">
                     <details>
-                      <summary className="cursor-pointer">What is Eleodes?</summary>
-                      <p className="mt-1">A smart system that generates water from air.</p>
+                      <summary className="cursor-pointer">How does the Eleodes device make water?</summary>
+                      <p className="mt-1">It collects moisture from the air and turns it into water.</p>
                     </details>
                     <details>
                       <summary className="cursor-pointer">What does the app monitor?</summary>
                       <p className="mt-1">Temperature, humidity, water level, and pH.</p>
+                    </details>
+                    <details>
+                      <summary className="cursor-pointer">Can I control the device from the app?</summary>
+                      <p className="mt-1">Yes. You can remotely turn the system on or off.</p>
                     </details>
                     <details>
                       <summary className="cursor-pointer">Where can I get the app?</summary>
