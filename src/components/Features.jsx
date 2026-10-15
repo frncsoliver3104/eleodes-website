@@ -83,6 +83,11 @@ const Features = () => {
       description: 'View the system’s pH reading alongside its other sensor values.',
       icon: 'quality',
     },
+    {
+      title: 'TDS Monitoring',
+      description: 'Monitor the total dissolved solids (TDS) reading in the AWG’s produced water.',
+      icon: 'water',
+    },
   ]
 
   const renderFeatureGrid = (features) => (
