@@ -96,7 +96,7 @@ const Footer = () => {
                 </details>
               </li>
               <li><a href="#terms" className="hover:underline">Terms and Services</a></li>
-              <li><a href="#about" className="hover:underline">Privacy and Policy</a></li>
+              <li><a href="/privacy" className="hover:underline">Privacy Notice</a></li>
             </ul>
           </div>
 

@@ -41,6 +41,6 @@ The backend must have access to `public/releases/app-release.apk` when it is dep
 ## Before going live
 
 - Replace the Instagram and Facebook URLs in `src/components/Footer.jsx` if they are not the project’s official accounts.
-- Set up a proper contact or legal page before adding policy/help links back to the footer.
+- Confirm the Privacy Notice contact details and data-retention practices before publishing.
 - Verify that the uploaded APK is the intended signed release.
 - Test the download on an Android device over HTTPS.

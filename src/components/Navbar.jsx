@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Logo from './Logo'
 
-const Navbar = () => {
+const Navbar = ({ isPolicyPage = false }) => {
   const [open, setOpen] = useState(false)
   const navLinks = [
     { label: 'Home', href: '#home' },
@@ -26,7 +26,7 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={link.href}
+              href={`${isPolicyPage ? '/' : ''}${link.href}`}
               className="hover:text-eleodes-teal transition-colors duration-200"
             >
               {link.label}
@@ -52,7 +52,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={`${isPolicyPage ? '/' : ''}${link.href}`}
                 onClick={() => setOpen(false)}
                 className="block rounded-2xl px-4 py-3 hover:bg-white/10 transition-colors duration-200"
               >

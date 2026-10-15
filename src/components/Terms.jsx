@@ -57,7 +57,7 @@ const Terms = () => {
 
           <section className="mb-4">
             <h3 className="mb-1 font-semibold">6. Privacy</h3>
-            <p>Your use of the app is also governed by our Privacy Policy, which explains how we collect, use, and protect your information.</p>
+            <p>Your use of the app is also covered by our <a className="underline" href="/privacy">Privacy Notice</a>, which explains how information is handled across the Eleodes website, app, and AWG device.</p>
           </section>
 
           <section className="mb-4">
