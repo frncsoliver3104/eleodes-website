@@ -9,6 +9,7 @@ import Download from './components/Download'
 import About from './components/About'
 import Creators from './components/Creators'
 import Footer from './components/Footer'
+import UserManual from './components/UserManual'
 
 function App() {
   const [hash, setHash] = useState(window.location.hash)
@@ -26,7 +27,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (hash === '#terms' || hash === '#privacy' || pathname === '/privacy' || pathname === '/terms') {
+    const isStandalonePagePath = pathname === '/privacy' || pathname === '/terms' || pathname === '/manual'
+    if (hash === '#terms' || hash === '#privacy' || (isStandalonePagePath && !hash)) {
       window.scrollTo({ top: 0, behavior: 'instant' })
     } else {
       document.getElementById(hash.slice(1) || 'home')?.scrollIntoView()
@@ -37,20 +39,39 @@ function App() {
 
   const isTermsPage = pathname === '/terms' || hash === '#terms'
 
+  const isManualPage = pathname === '/manual' || hash === '#manual'
+
   useEffect(() => {
-    document.title = isPrivacyPage
-      ? 'Privacy Notice | Eleodes'
+    const pageMetadata = isPrivacyPage
+      ? {
+          title: 'Privacy Notice | Eleodes',
+          description: 'Read how the Eleodes website, Android app, and connected AWG device handle information.',
+        }
       : isTermsPage
-        ? 'Terms of Service | Eleodes'
-        : 'Eleodes - Every Drop Matters'
-  }, [isPrivacyPage, isTermsPage])
+        ? {
+            title: 'Terms of Service | Eleodes',
+            description: 'Review the terms for using the Eleodes website and Android app.',
+          }
+        : isManualPage
+          ? {
+              title: 'User Manual | Eleodes',
+              description: 'Learn how to operate the ELEODES atmospheric water generator and set up the Eleodes Android app.',
+            }
+        : {
+            title: 'Eleodes - Every Drop Matters',
+            description: 'Download the Eleodes Android app to monitor your smart water-generation system.',
+          }
+
+    document.title = pageMetadata.title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', pageMetadata.description)
+  }, [isPrivacyPage, isTermsPage, isManualPage])
 
   return (
     <div className="min-h-screen bg-slate-50 text-gray-900 font-sans">
       <a href="#main-content" className="skip-link">Skip to content</a>
-      <Navbar isPolicyPage={isPrivacyPage || isTermsPage} />
+      <Navbar isPolicyPage={isPrivacyPage || isTermsPage || isManualPage} />
       <main id="main-content" tabIndex={-1} className="overflow-hidden outline-none">
-        {isPrivacyPage ? <PrivacyNotice /> : isTermsPage ? <Terms /> : <>
+        {isPrivacyPage ? <PrivacyNotice /> : isTermsPage ? <Terms /> : isManualPage ? <UserManual /> : <>
         <Hero />
         <Features />
         <Device />

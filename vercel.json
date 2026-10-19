@@ -26,6 +26,7 @@
   ],
   "rewrites": [
     { "source": "/privacy", "destination": "/index.html" },
-    { "source": "/terms", "destination": "/index.html" }
+    { "source": "/terms", "destination": "/index.html" },
+    { "source": "/manual", "destination": "/index.html" }
   ]
 }

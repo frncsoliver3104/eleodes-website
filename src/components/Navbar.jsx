@@ -4,17 +4,25 @@ import Logo from './Logo'
 const Navbar = ({ isPolicyPage = false }) => {
   const [open, setOpen] = useState(false)
   useEffect(() => {
+    const closeMenu = () => setOpen(false)
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') closeMenu()
     }
     window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
+    window.addEventListener('hashchange', closeMenu)
+    window.addEventListener('popstate', closeMenu)
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape)
+      window.removeEventListener('hashchange', closeMenu)
+      window.removeEventListener('popstate', closeMenu)
+    }
   }, [])
   const navLinks = [
     { label: 'Home', href: '#home' },
     { label: 'Features', href: '#features' },
     { label: 'Device', href: '#device' },
     { label: 'Download', href: '#download' },
+    { label: 'Manual', href: '/manual', page: true },
     { label: 'Creators', href: '#creators' },
     { label: 'About', href: '#about' },
   ]
@@ -33,7 +41,7 @@ const Navbar = ({ isPolicyPage = false }) => {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={`${isPolicyPage ? '/' : ''}${link.href}`}
+              href={link.page ? link.href : `${isPolicyPage ? '/' : ''}${link.href}`}
               className="hover:text-eleodes-teal transition-colors duration-200"
             >
               {link.label}
@@ -42,8 +50,8 @@ const Navbar = ({ isPolicyPage = false }) => {
         </div>
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden rounded-md p-2 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eleodes-teal"
-          aria-label="Toggle mobile menu"
+          className={`md:hidden h-11 w-11 rounded-md text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eleodes-teal ${open ? 'bg-white/10' : ''}`}
+          aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={open}
           aria-controls="mobile-navigation"
           type="button"
@@ -61,7 +69,7 @@ const Navbar = ({ isPolicyPage = false }) => {
             {navLinks.map((link) => (
               <a
                 key={link.label}
-                href={`${isPolicyPage ? '/' : ''}${link.href}`}
+                href={link.page ? link.href : `${isPolicyPage ? '/' : ''}${link.href}`}
                 onClick={() => setOpen(false)}
                 className="block rounded-2xl px-4 py-3 hover:bg-white/10 transition-colors duration-200"
               >

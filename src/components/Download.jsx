@@ -32,6 +32,8 @@ const Download = () => {
   const [screenshotIndex, setScreenshotIndex] = useState(0)
   const activeScreens = screenshots[screenshotMode]
   const activeScreenshot = activeScreens[screenshotIndex]
+  const previousScreenshot = activeScreens[(screenshotIndex - 1 + activeScreens.length) % activeScreens.length]
+  const nextScreenshot = activeScreens[(screenshotIndex + 1) % activeScreens.length]
 
   return (
     <section id="download" className="bg-[#e9fff4] py-20 md:py-28">
@@ -69,12 +71,25 @@ const Download = () => {
 
           </div>
 
-          <div className="flex items-center justify-center gap-3 md:col-start-1 md:row-start-2">
+          <div
+            role="group"
+            aria-label={`${screenshotMode} mode app screenshots`}
+            onKeyDown={(event) => {
+              if (event.key === 'ArrowLeft') {
+                event.preventDefault()
+                setScreenshotIndex((current) => (current - 1 + activeScreens.length) % activeScreens.length)
+              } else if (event.key === 'ArrowRight') {
+                event.preventDefault()
+                setScreenshotIndex((current) => (current + 1) % activeScreens.length)
+              }
+            }}
+            className="flex items-center justify-center gap-3 md:col-start-1 md:row-start-2"
+          >
               <button
                 type="button"
-                aria-label="Previous app screenshot"
+                aria-label={`Previous screenshot: ${previousScreenshot.title}`}
                 onClick={() => setScreenshotIndex((screenshotIndex - 1 + activeScreens.length) % activeScreens.length)}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-white/70 text-slate-800 transition-colors hover:bg-white"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-white/70 text-slate-800 transition-colors hover:bg-white"
               >
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m15 18-6-6 6-6" />
@@ -91,6 +106,7 @@ const Download = () => {
                     className="aspect-[9/19.5] w-full rounded-[0.9rem] object-cover"
                   />
                 </div>
+                <p aria-hidden="true" className="mt-2 text-center text-xs text-slate-500">{screenshotIndex + 1} of {activeScreens.length}</p>
                 <span aria-live="polite" className="sr-only">
                   Screen {screenshotIndex + 1} of {activeScreens.length}: {activeScreenshot.title}
                 </span>
@@ -98,9 +114,9 @@ const Download = () => {
 
               <button
                 type="button"
-                aria-label="Next app screenshot"
+                aria-label={`Next screenshot: ${nextScreenshot.title}`}
                 onClick={() => setScreenshotIndex((screenshotIndex + 1) % activeScreens.length)}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-white/70 text-slate-800 transition-colors hover:bg-white"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-white/70 text-slate-800 transition-colors hover:bg-white"
               >
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m9 18 6-6-6-6" />
@@ -142,7 +158,7 @@ const Download = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-slate-900">Version 0.0.7</p>
+                  <p className="font-semibold text-sm text-slate-900">Version 1.0.0</p>
                   <p className="text-xs text-slate-500">Latest Version</p>
                 </div>
               </div>
