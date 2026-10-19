@@ -86,6 +86,7 @@ const Download = () => {
                   <img
                     key={activeScreenshot.image}
                     src={`/app-screenshots/${activeScreenshot.image}`}
+                    loading="lazy"
                     alt={`${screenshotMode === 'light' ? 'Light' : 'Dark'} mode: ${activeScreenshot.title}`}
                     className="aspect-[9/19.5] w-full rounded-[0.9rem] object-cover"
                   />
@@ -111,6 +112,7 @@ const Download = () => {
             <div className="flex flex-col items-center justify-center text-center">
               <img
                 src={downloadQrCode}
+                loading="lazy"
                 alt="QR code to download the Eleodes Android app"
                 className="h-36 w-36 rounded-xl object-contain"
               />

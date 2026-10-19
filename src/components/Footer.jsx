@@ -69,7 +69,7 @@ const Footer = () => {
               <li id="faq">
                 <details className="group">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
-                    FAQ&apos;s
+                    FAQs
                     <span className="text-base leading-none" aria-hidden="true">
                       <span className="group-open:hidden">+</span>
                       <span className="hidden group-open:inline">−</span>
@@ -82,7 +82,7 @@ const Footer = () => {
                     </details>
                     <details>
                       <summary className="cursor-pointer">What does the app monitor?</summary>
-                      <p className="mt-1">Temperature, humidity, water level, and pH.</p>
+                      <p className="mt-1">Temperature, humidity, water level, and pH. Available readings depend on the sensors installed on your device.</p>
                     </details>
                     <details>
                       <summary className="cursor-pointer">Can I control the device from the app?</summary>
@@ -95,7 +95,7 @@ const Footer = () => {
                   </div>
                 </details>
               </li>
-              <li><a href="#terms" className="hover:underline">Terms and Services</a></li>
+              <li><a href="/terms" className="hover:underline">Terms of Service</a></li>
               <li><a href="/privacy" className="hover:underline">Privacy Notice</a></li>
             </ul>
           </div>

@@ -1,8 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Logo from './Logo'
 
 const Navbar = ({ isPolicyPage = false }) => {
   const [open, setOpen] = useState(false)
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [])
   const navLinks = [
     { label: 'Home', href: '#home' },
     { label: 'Features', href: '#features' },
@@ -13,10 +20,10 @@ const Navbar = ({ isPolicyPage = false }) => {
   ]
 
   return (
-    <nav className="bg-[#111111] text-white px-4 sm:px-6 py-2.5 sticky top-0 z-50 shadow-none">
+    <nav aria-label="Main navigation" className="bg-[#111111] text-white px-4 sm:px-6 py-2.5 sticky top-0 z-50 shadow-none">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-3 py-1 md:py-0">
         <a
-          href="#home"
+          href={isPolicyPage ? '/' : '#home'}
           aria-label="Eleodes home"
           className="rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-eleodes-teal"
         >
@@ -35,8 +42,11 @@ const Navbar = ({ isPolicyPage = false }) => {
         </div>
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden text-white"
+          className="md:hidden rounded-md p-2 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eleodes-teal"
           aria-label="Toggle mobile menu"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          type="button"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="3" y1="6" x2="21" y2="6" />
@@ -46,8 +56,7 @@ const Navbar = ({ isPolicyPage = false }) => {
         </button>
       </div>
 
-      {open && (
-        <div className="md:hidden mt-4 rounded-3xl border border-white/10 bg-[#111111] px-5 py-4 shadow-lg">
+      <div id="mobile-navigation" hidden={!open} className="md:hidden mt-4 rounded-3xl border border-white/10 bg-[#111111] px-5 py-4 shadow-lg">
           <div className="flex flex-col gap-3 text-sm font-light tracking-wide">
             {navLinks.map((link) => (
               <a
@@ -60,8 +69,7 @@ const Navbar = ({ isPolicyPage = false }) => {
               </a>
             ))}
           </div>
-        </div>
-      )}
+      </div>
     </nav>
   )
 }

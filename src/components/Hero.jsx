@@ -7,9 +7,9 @@ const Hero = () => {
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
         <div className="max-w-2xl text-left">
           <Logo size="sm" />
-          <p className="mb-6 mt-4 text-2xl font-light italic tracking-tight text-slate-950 md:text-[2.1rem]">
-            "Every Drop Matters"
-          </p>
+          <h1 className="mb-6 mt-4 text-2xl font-light italic tracking-tight text-slate-950 md:text-[2.1rem]">
+            “Every Drop Matters”
+          </h1>
           <p className="mb-10 max-w-lg text-base leading-8 tracking-tight text-slate-700 sm:text-lg">
             Download the Eleodes APK directly from this site and install the mobile app to monitor your system remotely.
           </p>

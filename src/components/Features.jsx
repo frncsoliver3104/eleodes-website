@@ -85,7 +85,7 @@ const Features = () => {
     },
     {
       title: 'TDS Monitoring',
-      description: 'Monitor the total dissolved solids (TDS) reading in the AWG’s produced water.',
+      description: 'TDS readings are available only on AWG units fitted with a compatible TDS sensor.',
       icon: 'water',
     },
   ]

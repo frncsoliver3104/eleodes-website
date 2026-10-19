@@ -6,14 +6,14 @@ const Terms = () => {
       <header className="bg-eleodes-teal px-6 py-10 sm:py-12">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-4 text-center sm:gap-6">
           <Logo size="sm" />
-          <h1 className="text-2xl font-bold text-slate-950 sm:text-3xl">Terms and Services</h1>
+          <h1 className="text-2xl font-bold text-slate-950 sm:text-3xl">Terms of Service</h1>
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
+      <div className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
         <article className="mx-auto max-w-4xl text-xs leading-6 text-slate-800 sm:text-sm">
           <h2 className="mb-1 font-semibold">Terms and Conditions</h2>
-          <p className="mb-4">August 28, 2020</p>
+          <p className="mb-4">Effective date: October 19, 2026</p>
 
           <p className="mb-4">
             Welcome to the Eleodes app. By downloading, accessing, or using our application, you agree to be bound by these Terms and Conditions. If you do not agree with these terms, please do not use the app.
@@ -99,7 +99,7 @@ const Terms = () => {
             <h3 className="mb-1 font-semibold">13. Contact Information</h3>
             <p>If you have any questions about these Terms and Conditions, please contact us:</p>
             <ul className="mt-1">
-              <li>Email: <a className="underline" href="mailto:eleodes@gmail.com">eleodes@gmail.com</a></li>
+              <li>Email: <a className="underline" href="mailto:eleodes472@gmail.com">eleodes472@gmail.com</a></li>
               <li>Phone: <a className="underline" href="tel:+639380114201">+63 938 011 4201</a></li>
               <li>Location: Iloilo City, Philippines</li>
             </ul>
@@ -107,7 +107,7 @@ const Terms = () => {
 
           <p>By using the Eleodes app, you acknowledge that you have read and agree to these Terms and Conditions.</p>
         </article>
-      </main>
+      </div>
     </div>
   )
 }

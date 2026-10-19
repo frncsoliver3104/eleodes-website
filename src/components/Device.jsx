@@ -5,9 +5,9 @@ const Device = () => (
         <p className="mb-3 mt-10 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">
           The device
         </p>
-        <h1 id="device-title" className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+        <h2 id="device-title" className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
           Meet Eleodes.
-        </h1>
+        </h2>
         <p className="mt-5 max-w-xl text-base leading-8 text-slate-700 sm:text-lg">
           A closer look at our smart atmospheric water generation system.
         </p>

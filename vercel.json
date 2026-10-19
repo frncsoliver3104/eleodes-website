@@ -23,5 +23,9 @@
         { "key": "Cache-Control", "value": "no-store" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/index.html" }
   ]
 }

@@ -12,9 +12,9 @@ const PrivacyNotice = () => (
       </div>
     </header>
 
-    <main className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
+    <div className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
       <article className="mx-auto max-w-4xl text-sm leading-7 text-slate-800">
-        <p className="mb-6 text-slate-600">Effective date: October 15, 2026</p>
+        <p className="mb-6 text-slate-600">Effective date: October 19, 2026</p>
         <p className="mb-6">
           This notice explains how the Eleodes website, Android companion app, and connected atmospheric water generator (AWG) handle information. The Eleodes project team at the Western Institute of Technology in Iloilo City, Philippines, is responsible for information collected through these services. This notice describes our practices; where consent is the appropriate legal basis, we will ask for it separately.
         </p>
@@ -66,7 +66,7 @@ const PrivacyNotice = () => (
         <p className="border-t border-emerald-900/15 pt-4 text-xs text-slate-600">We may update this notice when the service or its information practices change. The latest version and effective date will appear here.</p>
         <a href="/" className="mt-6 inline-flex font-semibold text-emerald-800 underline">← Back to Eleodes</a>
       </article>
-    </main>
+    </div>
   </div>
 )
 

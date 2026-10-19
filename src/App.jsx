@@ -26,7 +26,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (hash === '#terms' || hash === '#privacy' || pathname === '/privacy') {
+    if (hash === '#terms' || hash === '#privacy' || pathname === '/privacy' || pathname === '/terms') {
       window.scrollTo({ top: 0, behavior: 'instant' })
     } else {
       document.getElementById(hash.slice(1) || 'home')?.scrollIntoView()
@@ -35,11 +35,22 @@ function App() {
 
   const isPrivacyPage = pathname === '/privacy' || hash === '#privacy'
 
+  const isTermsPage = pathname === '/terms' || hash === '#terms'
+
+  useEffect(() => {
+    document.title = isPrivacyPage
+      ? 'Privacy Notice | Eleodes'
+      : isTermsPage
+        ? 'Terms of Service | Eleodes'
+        : 'Eleodes - Every Drop Matters'
+  }, [isPrivacyPage, isTermsPage])
+
   return (
     <div className="min-h-screen bg-slate-50 text-gray-900 font-sans">
-      <Navbar isPolicyPage={isPrivacyPage || hash === '#terms'} />
-      <main className="overflow-hidden">
-        {isPrivacyPage ? <PrivacyNotice /> : hash === '#terms' ? <Terms /> : <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <Navbar isPolicyPage={isPrivacyPage || isTermsPage} />
+      <main id="main-content" tabIndex={-1} className="overflow-hidden outline-none">
+        {isPrivacyPage ? <PrivacyNotice /> : isTermsPage ? <Terms /> : <>
         <Hero />
         <Features />
         <Device />
@@ -48,7 +59,7 @@ function App() {
         <About />
         </>}
       </main>
-      {hash !== '#terms' && !isPrivacyPage && <Footer />}
+      {!isTermsPage && !isPrivacyPage && <Footer />}
     </div>
   )
 }
