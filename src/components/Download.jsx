@@ -158,7 +158,7 @@ const Download = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-slate-900">Version 1.0.0</p>
+                  <p className="font-semibold text-sm text-slate-900">Version 1.0.1</p>
                   <p className="text-xs text-slate-500">Latest Version</p>
                 </div>
               </div>
