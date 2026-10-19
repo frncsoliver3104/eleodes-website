@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 const deviceViews = [
   {
@@ -29,6 +30,9 @@ const deviceViews = [
 
 const Device = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isZoomed, setIsZoomed] = useState(false)
+  const previewButtonRef = useRef(null)
+  const closeButtonRef = useRef(null)
   const activeView = deviceViews[activeIndex]
 
   const showPrevious = () => {
@@ -38,6 +42,25 @@ const Device = () => {
   const showNext = () => {
     setActiveIndex((current) => (current + 1) % deviceViews.length)
   }
+
+  useEffect(() => {
+    if (!isZoomed) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setIsZoomed(false)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+    closeButtonRef.current?.focus()
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+      previewButtonRef.current?.focus()
+    }
+  }, [isZoomed])
 
   return (
     <section id="device" aria-labelledby="device-title" className="scroll-mt-20 bg-slate-50 pb-20 md:pb-28">
@@ -55,7 +78,7 @@ const Device = () => {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-start gap-8 px-6 pt-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] sm:gap-6 sm:px-8 lg:gap-10">
+      <div className="mx-auto grid max-w-6xl items-start gap-8 px-6 pt-8 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)] sm:gap-6 sm:px-8 lg:gap-10">
         <div>
           <div
             role="group"
@@ -82,13 +105,22 @@ const Device = () => {
               </svg>
             </button>
 
-            <img
-              key={activeView.image}
-              src={`/device-views/${activeView.image}`}
-              loading="lazy"
-              alt={activeView.alt}
-              className="aspect-[3/4] w-[100px] shrink-0 rounded-xl object-contain sm:w-[150px] lg:w-[200px]"
-            />
+            <button
+              ref={previewButtonRef}
+              type="button"
+              aria-haspopup="dialog"
+              aria-label={`Open larger photo: ${activeView.title}`}
+              onClick={() => setIsZoomed(true)}
+              className="aspect-[3/4] w-[120px] shrink-0 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200 transition-shadow hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 sm:w-[170px] lg:w-[240px]"
+            >
+              <img
+                key={activeView.image}
+                src={`/device-views/${activeView.image}`}
+                loading="lazy"
+                alt={activeView.alt}
+                className="h-full w-full object-contain"
+              />
+            </button>
 
             <button
               type="button"
@@ -102,9 +134,19 @@ const Device = () => {
             </button>
           </div>
 
-          <p aria-live="polite" className="mt-2 text-center text-sm text-slate-500">
-            {activeIndex + 1} of {deviceViews.length}
-          </p>
+          <div role="group" aria-label="Choose device photo" className="mt-3 flex items-center justify-center gap-2">
+            {deviceViews.map((view, index) => (
+              <button
+                key={view.image}
+                type="button"
+                aria-label={`Show device photo ${index + 1}: ${view.title}`}
+                aria-pressed={activeIndex === index}
+                onClick={() => setActiveIndex(index)}
+                className={`h-2.5 w-2.5 rounded-full transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${activeIndex === index ? 'bg-black' : 'bg-slate-300 hover:bg-slate-400'}`}
+              />
+            ))}
+            <span aria-live="polite" className="sr-only">Photo {activeIndex + 1} of {deviceViews.length}</span>
+          </div>
         </div>
 
         <article aria-live="polite" aria-atomic="true" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
@@ -119,6 +161,65 @@ const Device = () => {
           </p>
         </article>
       </div>
+
+      {isZoomed && createPortal(
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/75 p-3 backdrop-blur-sm sm:p-6"
+          onClick={() => setIsZoomed(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="device-zoom-title"
+            onClick={(event) => event.stopPropagation()}
+            className="relative flex max-h-[94vh] w-full max-w-5xl flex-col rounded-3xl border border-emerald-100 bg-slate-50 p-3 shadow-2xl sm:max-h-[92vh] sm:p-6"
+          >
+            <div className="mb-3 flex items-start justify-between gap-4 sm:mb-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 sm:text-sm">Device view {activeIndex + 1}</p>
+                <h3 id="device-zoom-title" className="mt-1 text-base font-semibold text-slate-950 sm:text-xl">
+                  {activeView.title}
+                </h3>
+              </div>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                aria-label="Close enlarged device photo"
+                onClick={() => setIsZoomed(false)}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 sm:h-10 sm:w-10"
+              >
+                <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="m18 6-12 12M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 sm:p-4">
+              <img
+                key={`zoom-${activeView.image}`}
+                src={`/device-views/${activeView.image}`}
+                alt={activeView.alt}
+                className="max-h-[62vh] max-w-full rounded-xl object-contain sm:max-h-[68vh]"
+              />
+            </div>
+            <div className="mt-3 flex justify-center sm:mt-4">
+              <div role="group" aria-label="Choose device photo" className="flex items-center justify-center gap-2">
+                {deviceViews.map((view, index) => (
+                  <button
+                    key={view.image}
+                    type="button"
+                    aria-label={`Show device photo ${index + 1}: ${view.title}`}
+                    aria-pressed={activeIndex === index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-2.5 w-2.5 rounded-full transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${activeIndex === index ? 'bg-black' : 'bg-slate-300 hover:bg-slate-400'}`}
+                  />
+                ))}
+                <span aria-live="polite" className="sr-only">Photo {activeIndex + 1} of {deviceViews.length}</span>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )}
     </section>
   )
 }

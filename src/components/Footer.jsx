@@ -105,7 +105,6 @@ const Footer = () => {
             <h4 className="mb-4 font-semibold">More</h4>
             <ul className="space-y-3 text-sm">
               <li><a href="/manual" className="hover:underline">User Manual</a></li>
-              <li><a href="/#download" className="hover:underline">Download the app</a></li>
               <li>
                 <details className="group">
                   <summary className="cursor-pointer list-none hover:underline">Report a Bug</summary>

@@ -2,9 +2,9 @@ import Logo from './Logo'
 
 const Hero = () => {
   return (
-    <section id="home" className="relative overflow-hidden bg-[#d9fff2] py-20 md:py-28">
+    <section id="home" className="relative overflow-hidden bg-[#d9fff2] py-12 md:py-16 lg:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.14),_transparent_48%)]" />
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:gap-12">
         <div className="max-w-2xl text-left">
           <Logo size="sm" />
           <h1 className="mb-6 mt-4 text-2xl font-light italic tracking-tight text-slate-950 md:text-[2.1rem]">
@@ -24,6 +24,13 @@ const Hero = () => {
             </svg>
             <span className="font-medium">APK Download</span>
           </a>
+        </div>
+        <div className="flex justify-center md:justify-end">
+          <img
+            src="/eleodes-phones.png"
+            alt="ELEODES mobile app displayed on two phones"
+            className="h-auto w-[min(72vw,280px)] object-contain drop-shadow-[0_20px_40px_rgba(15,23,42,0.14)] md:w-full md:max-w-[380px]"
+          />
         </div>
       </div>
     </section>
